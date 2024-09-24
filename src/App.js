@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/AuthContext';  // Correct import
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Flights from './pages/Flights';
+import NavBar from './components/Navbar';
 
-function App() {
+import PickFlight from './pages/PickFlight';
+import MyFlights from './pages/MyFlights';
+
+const App = () => {
+  const { isAuthenticated, couldIShow } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("couldIShow changed:", couldIShow);
+  }, [couldIShow]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        {/* Conditionally show NavBar based on couldIShow */}
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/flights" element={<Flights />} />
+          <Route path="/pickflight" element={<PickFlight />} />
+          <Route path="/myflights" element={<MyFlights />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,44 @@
+#showFlightButton{
+    background-color: purple;
+    
+}
+
+#flightInfoBox{
+    border: solid 2px purple;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+#filterBox{
+    min-height: 80vh;
+    border: 2px solid purple;
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: 15px;
+}
+
+#rightestItem
+{
+    min-height: 27vh;
+    width: 300px;
+}
+
+#sortByItem{
+    margin-top: 25%;
+    margin-bottom: 25%;
+}
+
+#filterFrame{
+    background-color: orange;
+    padding: 5%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+#rightestItemImage{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
