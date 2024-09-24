@@ -10,7 +10,7 @@ const Flights = () => {
     useEffect(() => {
         const fetchFlights = async () => {
             try {
-                const response = await axios.get('http://localhost:8500/listflights', {
+                const response = await axios.get('http://34.32.36.55/listflights', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setFlights(response.data);

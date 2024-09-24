@@ -15,7 +15,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8500/register', { name, email, password });
+            const response = await axios.post('http://34.32.36.55/register', { name, email, password });
             if(response.status === 201)
             {
                 navigate('/');

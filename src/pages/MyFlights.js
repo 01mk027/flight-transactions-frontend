@@ -13,7 +13,7 @@ const MyFlights = () => {
     const [citiesEnd, setCitiesEnd] = useState([]);
 
     const fetchMyFlights = () => {
-        axios.post('http://localhost:8500/retrievemyflightsviauserid', {
+        axios.post('http://34.32.36.55/retrievemyflightsviauserid', {
             userId: userId
         }, { headers: { Authorization: `Bearer ${token}` } }).then(res => {
             console.log(res);
@@ -39,21 +39,21 @@ const MyFlights = () => {
         let cc2 = [];
         myFlights && myFlights.map(item => {
 
-            axios.get(`http://localhost:8500/chooseairline/${item.prefixICAO}`, {
+            axios.get(`http://34.32.36.55/chooseairline/${item.prefixICAO}`, {
                 headers: { Authorization: `Bearer ${token}` },
 
             }).then(res => {
                 //console.log(res.data.iata);
                 //res.data.iata
 
-                axios.get(`http://localhost:8500/destinations/${res.data.icao}`, {
+                axios.get(`http://34.32.36.55/destinations/${res.data.icao}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 }).then(res => {
                     //citiesPre.push(res.data.city);
                     //console.log(res.data.city);
                     cc1.push(res.data.city);
                     setCitiesStart([...citiesStart, cc1]);
-                    axios.get(`http://localhost:8500/destinations/${item.route.destinations[0]}`).then(res => {
+                    axios.get(`http://34.32.36.55/destinations/${item.route.destinations[0]}`).then(res => {
                         //console.log(res.data.city);
                         cc2.push(res.data.city);
 
@@ -75,7 +75,7 @@ const MyFlights = () => {
         let resp = window.confirm("Do you want to withdraw this flight request?");
         if (resp) {
             
-            await axios.post('http://localhost:8500/deletemyflight', {
+            await axios.post('http://34.32.36.55/deletemyflight', {
                 headers: { Authorization: `Bearer ${token}` },
             }, { flightId: id }).then(res => {
                 console.log(res);

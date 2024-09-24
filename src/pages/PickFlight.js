@@ -38,7 +38,7 @@ const PickFlight = () => {
     useEffect(() => {
         const fetchFlights = async () => {
             try {
-                const response = await axios.get('http://localhost:8500/fetchairlines', {
+                const response = await axios.get('http://34.32.36.55/fetchairlines', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAirlines(response.data.airlines);
@@ -66,7 +66,7 @@ const PickFlight = () => {
                 alert("You shouldnt choose date which belongs past.");
                 return;
             }
-            const response = await axios.get('http://localhost:8500/listflights', {
+            const response = await axios.get('http://34.32.36.55/listflights', {
                 headers: { Authorization: `Bearer ${token}` },
                 params: {
                     ////scheduleDate, scheduleTime, flightDirection, airlineCode
@@ -101,21 +101,21 @@ const PickFlight = () => {
         let cc2 = [];
         flights && flights.map(item => {
             
-            axios.get(`http://localhost:8500/chooseairline/${item.prefixICAO}`, {
+            axios.get(`http://34.32.36.55/chooseairline/${item.prefixICAO}`, {
                 headers: { Authorization: `Bearer ${token}` },
                 
             }).then(res => {
                 //console.log(res.data.iata);
                 //res.data.iata
                     
-                axios.get(`http://localhost:8500/destinations/${res.data.icao}`, {
+                axios.get(`http://34.32.36.55/destinations/${res.data.icao}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 }).then(res => {
                     //citiesPre.push(res.data.city);
                     //console.log(res.data.city);
                     cc1.push(res.data.city);
                     setCitiesStart([...citiesStart, cc1]);
-                    axios.get(`http://localhost:8500/destinations/${item.route.destinations[0]}`).then(res => {
+                    axios.get(`http://34.32.36.55/destinations/${item.route.destinations[0]}`).then(res => {
                         //console.log(res.data.city);
                         cc2.push(res.data.city);
                         
@@ -279,7 +279,7 @@ const PickFlight = () => {
 
         if(response)
         {
-            await axios.post('http://localhost:8500/pickflight', {
+            await axios.post('http://34.32.36.55/pickflight', {
                 userId: userId,
                 flightId: flightId,
                 price: price

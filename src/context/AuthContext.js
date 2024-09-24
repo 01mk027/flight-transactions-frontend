@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await axios.post('http://localhost:8500/login', { email, password });
+            const response = await axios.post('http://34.32.36.55/login', { email, password });
             setToken(response.data.token);
             setUserId(response.data.userId);
             return response.data;
